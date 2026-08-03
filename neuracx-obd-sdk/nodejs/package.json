@@ -1,0 +1,16 @@
+{
+  "name": "omni-obd-sdk",
+  "version": "1.0.0",
+  "description": "Official Node.js SDK for the Omni Outbound Dial (OBD) API",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["obd", "outbound-dial", "voice-api", "cpaas", "omni"],
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "lib/",
+    "README.md"
+  ]
+}

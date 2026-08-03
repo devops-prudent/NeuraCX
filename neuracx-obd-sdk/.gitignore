@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+venv/
+.env
+
+# Java
+target/
+*.class
+
+# General
+.DS_Store
