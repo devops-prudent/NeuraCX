@@ -1,0 +1,7 @@
+//required packages
+
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+google-genai>=0.8.0
+mysql-connector-python>=8.3.0
+python-dotenv>=1.0.0
