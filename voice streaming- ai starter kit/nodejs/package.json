@@ -1,0 +1,19 @@
+{
+  "name": "doctor-booking-voice-assistant",
+  "version": "1.0.0",
+  "description": "Doctor appointment booking voice assistant (Gemini Live API + WebSocket bridge)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.9.0",
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
