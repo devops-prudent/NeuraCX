@@ -26,9 +26,11 @@ Then in your project's `package.json`:
 }
 ```
 
+sample package.json:
+
 ```json
 {
-  "name": "neursobdsdktest",
+  "name": "neuraobdsdktest",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
