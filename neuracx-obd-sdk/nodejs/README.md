@@ -26,6 +26,25 @@ Then in your project's `package.json`:
 }
 ```
 
+```json
+{
+  "name": "neursobdsdktest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "omni-obd-sdk": "file:C:\\sdks\\NeuraCX\\neuracx-obd-sdk\\nodejs"
+  }
+}
+```
+
 ```bash
 npm install
 ```
@@ -52,22 +71,31 @@ If this fails with a corrupted-tarball or ENOENT error, run `npm cache clean --f
 ## Quick start
 
 ```js
-const { OBDClient } = require('omni-obd-sdk');
+import dotenv from "dotenv";
+import { OBDClient, OBDApiError } from 'omni-obd-sdk';
+
+dotenv.config();
 
 const client = new OBDClient({
-  baseUrl: process.env.OBD_API_BASE_URL,   // e.g. "https://obd.yourdomain.com"
-  clientId: process.env.OBD_CLIENT_ID,     // provided by your account team
-  apiKey: process.env.OBD_API_KEY,         // provided by your account team
+  baseUrl: process.env.OBD_API_BASE_URL,
+  clientId: process.env.OBD_CLIENT_ID,
+  apiKey: process.env.OBD_API_KEY,
 });
 
-const response = await client.initiateCall({
-  fromNumber: '+9104847189769',
-  toNumber: '+916238330634',
-  refId: 6565,
-});
-
-console.log(response);
-// { status: 'success', message: 'OBD initiation successful', request_id: 19419, timestamp: '...' }
+try {
+  const response = await client.initiateCall({
+    fromNumber: '+91xxxxxxxxxx', 
+    toNumber: '+91xxxxxxxxxx',
+    refId: 6565,
+  });
+  console.log(response);
+} catch (err) {
+  if (err instanceof OBDApiError) {
+    console.error('OBD API error:', err.statusCode, err.responseBody);
+  } else {
+    throw err;
+  }
+}
 ```
 
 Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them from environment variables or a secrets manager. See `examples/basic-usage.js` for the full field set, including live streaming and status callbacks.
