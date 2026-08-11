@@ -6,17 +6,48 @@ Requires Node.js 18 or later (uses the built-in `fetch`).
 
 ## Install
 
-If you're pulling this from GitHub directly:
+This SDK lives in a subfolder of the NeuraCX repo, at `neuracx-obd-sdk/nodejs`. There are three ways to pull it into a consuming project — pick based on what's reliable in your environment.
+
+### Option A — Clone + local `file:` dependency (most reliable, recommended)
+
+Some npm/Windows combinations choke on the git-subdirectory syntax in Option B, so this is the option to reach for if that gives you trouble.
 
 ```bash
-npm install git+https://github.com/your-org/omni-obd-sdk.git#main --workspace=nodejs
+git clone https://github.com/devops-prudent/NeuraCX.git C:\sdks\NeuraCX
 ```
 
-Or, once published to npm:
+Then in your project's `package.json`:
+
+```json
+{
+  "dependencies": {
+    "omni-obd-sdk": "file:C:\\sdks\\NeuraCX\\neuracx-obd-sdk\\nodejs"
+  }
+}
+```
 
 ```bash
-npm install omni-obd-sdk
+npm install
 ```
+
+To pick up SDK updates later, `git pull` inside `C:\sdks\NeuraCX` and re-run `npm install` in your project.
+
+### Option B — Directly from GitHub via git URL + subdirectory
+
+```bash
+npm install git+https://github.com/devops-prudent/NeuraCX.git#main:neuracx-obd-sdk/nodejs
+```
+
+For a private repo, use an SSH URL (with your SSH key set up) or embed a personal access token:
+
+```bash
+npm install git+ssh://git@github.com/devops-prudent/NeuraCX.git#main:neuracx-obd-sdk/nodejs
+# or
+npm install git+https://<token>@github.com/devops-prudent/NeuraCX.git#main:neuracx-obd-sdk/nodejs
+```
+
+If this fails with a corrupted-tarball or ENOENT error, run `npm cache clean --force` and retry, or fall back to Option A.
+
 
 ## Quick start
 
