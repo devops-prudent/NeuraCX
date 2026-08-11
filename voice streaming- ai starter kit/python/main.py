@@ -19,9 +19,9 @@ import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from google import genai
 from google.genai import types
-# from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-# load_dotenv()
+#load_dotenv()
 
 # ── logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -133,7 +133,7 @@ DOCTOR ROSTER (this is the ONLY information you have about doctors — no databa
 When a caller asks which doctors are available, or asks about a specific doctor's timing or specialty, answer directly from this roster in a smooth spoken summary — do not say you are checking a system or database, just tell them. When booking, only accept a day and time that falls within the chosen doctor's listed availability above; if the caller requests a day or time outside that doctor's availability, let them know that doctor isn't available then and offer their actual available days and times instead.
 
 SCOPE — STAY ON TOPIC:
-You handle ONLY booking, rescheduling, and canceling doctor appointments. If the caller asks about anything else — medical advice, symptoms, prices unrelated to booking, general chit-chat, or any topic outside appointment booking — do not attempt to answer it. Instead say, in your own natural words, something like: "I'm an appointment booking system, I don't have that information" or "I'm an appointment booking system, I can't help with that right now." Then gently steer back by asking if they'd like to book, reschedule, or cancel an appointment.
+You handle ONLY booking appointments. If the caller asks about anything else — medical advice, symptoms, prices unrelated to booking, general chit-chat, or any topic outside appointment booking — do not attempt to answer it. Instead say, in your own natural words, something like: "I'm an appointment booking system, I don't have that information" or "I'm an appointment booking system, I can't help with that right now." Then gently steer back by asking if they'd like to book  an appointment.
 
 CRITICAL VOICE & TEXT-TO-SPEECH (TTS) RULES:
 1. STRICTLY NO MARKDOWN FORMATTING: Never use asterisks (**), hashtags (#), numbered lists (1., 2.), or bullet points. Output text must be pure, clean prose. Markdown symbols will break the text-to-speech audio engine.
@@ -153,6 +153,7 @@ FINALIZING A BOOKING:
 def build_live_config() -> types.LiveConnectConfig:
     return types.LiveConnectConfig(
         response_modalities=[types.Modality.AUDIO],
+        # enable_affective_dialog=True,
         system_instruction=types.Content(
             parts=[types.Part.from_text(text=build_system_prompt())]
         ),
@@ -171,10 +172,10 @@ def build_live_config() -> types.LiveConnectConfig:
         realtime_input_config=types.RealtimeInputConfig(
             automatic_activity_detection=types.AutomaticActivityDetection(
                 disabled=False,
-                start_of_speech_sensitivity=types.StartSensitivity.START_SENSITIVITY_HIGH,
+                start_of_speech_sensitivity=types.StartSensitivity.START_SENSITIVITY_LOW,
                 end_of_speech_sensitivity=types.EndSensitivity.END_SENSITIVITY_LOW,
-                prefix_padding_ms=100,
-                silence_duration_ms=400,
+                prefix_padding_ms=20,
+                silence_duration_ms=200,
             )
         ),
         tools=[confirm_booking_tool]
@@ -270,7 +271,9 @@ async def voice_endpoint(websocket: WebSocket):
                 try:
                     async for message in websocket.iter_text():
                         payload  = json.loads(message)
+                        #print("payload:",payload)
                         msg_type = payload.get("event")
+                        #print("msg_type:",msg_type)
 
                         if msg_type == "media":
                             raw_pcm = base64.b64decode(payload.get("media", {}).get("payload"))
@@ -377,7 +380,8 @@ async def voice_endpoint(websocket: WebSocket):
 
                                 if getattr(sc, "interrupted", False):
                                     log.info("Barge-in detected — generation interrupted")
-                                    await websocket.send_text(json.dumps({"type": "interrupted"}))
+                                    await websocket.send_text(json.dumps({"event": "clear","room_id": room_id}))
+                                    # await websocket.send_text(json.dumps({"type": "interrupted"}))
 
                                 if getattr(sc, "input_transcription", None) and sc.input_transcription.text:
                                     await websocket.send_text(json.dumps({
