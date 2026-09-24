@@ -8,6 +8,14 @@ Requires Java 11 or later. Depends only on `jackson-databind` for JSON; uses the
 
 Add as a Maven module (from a local checkout or a git submodule):
 
+Add To your local Maven repo 
+mvn install:install-file ^
+  -Dfile="realPath\omni-obd-sdk.jar" ^
+  -DgroupId=com.omni ^
+  -DartifactId=omni-obd-sdk ^
+  -Dversion=1.0.0 ^
+  -Dpackaging=jar
+
 ```xml
 <dependency>
     <groupId>com.omni.obd</groupId>
@@ -24,6 +32,13 @@ mvn install
 ## Quick start
 
 ```java
+import com.omni.obd.OBDApiException;
+import com.omni.obd.OBDClient;
+import com.omni.obd.model.CallEvents;
+import com.omni.obd.model.CallRequest;
+import com.omni.obd.model.CallResponse;
+import com.omni.obd.model.StreamConfig;
+
 OBDClient client = new OBDClient.Builder()
         .baseUrl(System.getenv("OBD_API_BASE_URL"))   // e.g. "https://obd.yourdomain.com"
         .clientId(System.getenv("OBD_CLIENT_ID"))       // provided by your account team
