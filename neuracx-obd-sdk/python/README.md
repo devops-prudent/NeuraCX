@@ -38,6 +38,21 @@ response = client.initiate_call(
     from_number="+91xxxxxxxxxx",
     to_number="+91yyyyyyyyyy",
     ref_id=6565,
+    next_action_by_api=False,
+    next_action_url='',
+    stream={
+        "enabled": True,
+        "record": True,
+        "stream_url": 'wss://xxx/yy/ws',
+        "duration": 10,
+        "chunkSize": 1600,
+        "startPhase": 'ringing',
+        "customParam": {
+          "customerId": 'CUST10001',
+          "orderId": 'ORD89231',
+        },
+    }
+
 )
 
 print(response)
@@ -48,30 +63,30 @@ Never hardcode `base_url`, `client_id`, or `api_key` in source code — load the
 
 ## Field reference
 
-| Field | Type | Required | Meaning |
-|---|---|---|---|
-| `from_number` | str | yes | Caller ID shown to the destination, E.164 format (`+countrycode...`) |
-| `to_number` | str | yes | Number to dial, E.164 format |
-| `dial_request_expiry` | int | no | Seconds after which the *request itself* is abandoned if the call hasn't been placed yet |
-| `ref_id` | int/str | no | Your own reference id, echoed back in callbacks so you can match them to this call |
-| `timeout` | int | no | How long to let the destination ring (seconds) before giving up |
-| `next_action_by_api` | bool | no | `True` if your server decides the next IVR step dynamically via `next_action_url`, rather than a pre-built flow |
-| `next_action_url` | str | no | Webhook the platform calls mid-call to ask what should happen next |
-| `stream` | dict | no | Live audio streaming / recording config — build with `build_stream_config()` |
-| `pingback_url` | str | no | Webhook that receives call status callbacks |
-| `call_events` | dict | no | Which lifecycle events should trigger a callback — build with `build_call_events()` |
+| Field                 | Type    | Required | Meaning                                                                                                         |
+| --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `from_number`         | str     | yes      | Caller ID shown to the destination, E.164 format (`+countrycode...`)                                            |
+| `to_number`           | str     | yes      | Number to dial, E.164 format                                                                                    |
+| `dial_request_expiry` | int     | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                        |
+| `ref_id`              | int/str | no       | Your own reference id, echoed back in callbacks so you can match them to this call                              |
+| `timeout`             | int     | no       | How long to let the destination ring (seconds) before giving up                                                 |
+| `next_action_by_api`  | bool    | no       | `True` if your server decides the next IVR step dynamically via `next_action_url`, rather than a pre-built flow |
+| `next_action_url`     | str     | no       | Webhook the platform calls mid-call to ask what should happen next                                              |
+| `stream`              | dict    | no       | Live audio streaming / recording config — build with `build_stream_config()`                                    |
+| `pingback_url`        | str     | no       | Webhook that receives call status callbacks                                                                     |
+| `call_events`         | dict    | no       | Which lifecycle events should trigger a callback — build with `build_call_events()`                             |
 
 ### `build_stream_config()`
 
-| Argument | Meaning |
-|---|---|
-| `stream_url` | Your WebSocket endpoint that receives the audio, e.g. `ws://media.example.com:3031` |
-| `enabled` | Turn audio streaming on/off for this call |
-| `record` | Also persist the audio as a recording, not just stream it live |
-| `duration` | Max streaming duration in seconds |
-| `chunk_size` | Size in bytes of each audio chunk sent over the WebSocket |
-| `start_phase` | `"ringing"` or `"answered"` — when streaming should begin |
-| `custom_param` | Free-form dict of metadata echoed back to your WebSocket server |
+| Argument       | Meaning                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `stream_url`   | Your WebSocket endpoint that receives the audio, e.g. `ws://media.example.com:3031` |
+| `enabled`      | Turn audio streaming on/off for this call                                           |
+| `record`       | Also persist the audio as a recording, not just stream it live                      |
+| `duration`     | Max streaming duration in seconds                                                   |
+| `chunk_size`   | Size in bytes of each audio chunk sent over the WebSocket                           |
+| `start_phase`  | `"ringing"` or `"answered"` — when streaming should begin                           |
+| `custom_param` | Free-form dict of metadata echoed back to your WebSocket server                     |
 
 ## Error handling
 
