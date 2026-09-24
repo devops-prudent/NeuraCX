@@ -13,9 +13,9 @@ class OBDClient:
             api_key=os.environ["OBD_API_KEY"],
         )
         response = client.initiate_call(
-            from_number="+9104847189769",
-            to_number="+916238330634",
-            ref_id=6565,
+            from_number="+91xxxxxxxx",
+            to_number="+91xxxxxxxx",
+            ref_id=xxxx,
         )
     """
 
@@ -93,7 +93,7 @@ class OBDClient:
         for key, value in optional_fields.items():
             if value is not None:
                 payload[key] = value
-
+        
         return self._post("/api/obd/calls", payload)
 
     def _post(self, path, payload):
@@ -115,6 +115,8 @@ class OBDClient:
             body = {"raw": response.text}
 
         if not response.ok:
+        
+
             raise OBDApiError(
                 body.get("message", f"OBD API request failed with status {response.status_code}"),
                 status_code=response.status_code,

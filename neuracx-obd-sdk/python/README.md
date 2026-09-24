@@ -16,7 +16,7 @@ Or, from a local checkout:
 
 ```bash
 cd python
-pip install .
+pip install -r requirements.txt
 ```
 
 ## Quick start
@@ -24,11 +24,14 @@ pip install .
 ```python
 import os
 from obd_sdk import OBDClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = OBDClient(
-    base_url=os.environ["OBD_API_BASE_URL"],   # e.g. "https://obd.yourdomain.com"
-    client_id=os.environ["OBD_CLIENT_ID"],       # provided by your account team
-    api_key=os.environ["OBD_API_KEY"],           # provided by your account team
+    base_url=os.getenv["OBD_API_BASE_URL"],   # e.g. "https://obd.yourdomain.com"
+    client_id=os.getenv["OBD_CLIENT_ID"],       # provided by your account team
+    api_key=os.getenv["OBD_API_KEY"],           # provided by your account team
 )
 
 response = client.initiate_call(

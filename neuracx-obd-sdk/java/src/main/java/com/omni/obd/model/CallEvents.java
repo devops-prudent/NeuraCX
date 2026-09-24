@@ -1,10 +1,12 @@
 package com.omni.obd.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Controls which call lifecycle events trigger a callback to pingbackUrl. */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class CallEvents {
 
     @JsonProperty("initiated")

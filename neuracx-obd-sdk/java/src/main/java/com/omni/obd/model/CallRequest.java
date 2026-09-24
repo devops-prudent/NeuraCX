@@ -1,10 +1,11 @@
 package com.omni.obd.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.omni.obd.OBDValidationException;
-
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 /** Request payload for {@code OBDClient.initiateCall}. Build with {@code CallRequest.Builder}. */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CallRequest {
@@ -48,11 +49,12 @@ public class CallRequest {
     /** Which lifecycle events should trigger a callback to pingbackUrl. */
     @JsonProperty("call_events")
     private CallEvents callEvents;
-
+//    @JsonProperty("from_number")
     public String getFromNumber() {
         return fromNumber;
     }
 
+//    @JsonProperty("to_number")
     public String getToNumber() {
         return toNumber;
     }
