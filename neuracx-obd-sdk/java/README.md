@@ -9,6 +9,7 @@ Requires Java 11 or later. Depends only on `jackson-databind` for JSON; uses the
 Add as a Maven module (from a local checkout or a git submodule):
 
 Add To your local Maven repo 
+
 mvn install:install-file ^
   -Dfile="realPath\omni-obd-sdk.jar" ^
   -DgroupId=com.omni ^
@@ -40,16 +41,31 @@ import com.omni.obd.model.CallResponse;
 import com.omni.obd.model.StreamConfig;
 
 OBDClient client = new OBDClient.Builder()
-        .baseUrl(System.getenv("OBD_API_BASE_URL"))   // e.g. "https://obd.yourdomain.com"
-        .clientId(System.getenv("OBD_CLIENT_ID"))       // provided by your account team
-        .apiKey(System.getenv("OBD_API_KEY"))           // provided by your account team
-        .build();
+                .baseUrl("https://neuracx.io")   // e.g. "https://obd.yourdomain.com"
+                .clientId("7da9f0c7304b770915d8e30c4ce32d07")       // provided by your account team
+                .apiKey("VcnTsXGkHP47xpP3LIF2jKzssfmcdyPqqiJS2iC24fx")         // provided by your account team
+                .build();
 
-CallRequest request = new CallRequest.Builder()
-        .fromNumber("+91yyyyyyyyyy")
-        .toNumber("+91xxxxxxxxxx")
-        .refId(6565)
-        .build();
+        CallRequest request = new CallRequest.Builder()
+                .fromNumber("+918044350235")
+                .toNumber("+919847472945")
+                .dialRequestExpiry(10)
+                .refId(6565)
+                .timeout(30)
+                .nextActionByApi(false)
+                .nextActionUrl("http://your-ivr-server.example.com/ivr/webhook")
+                .stream(new StreamConfig.Builder()
+                        .enabled(true)
+                        .record(true)
+                        .streamUrl("wss://xx/ws?")
+                        .duration(10)
+                        .chunkSize(1600)
+                        .startPhase("ringing")
+                        .customParam(Map.of("customer_id", "CUST10001", "order_id", "ORD89231"))
+                        .build())
+                .pingbackUrl("https://buzib.com//APITester/api/postdata")
+                .callEvents(CallEvents.all())
+                .build();
 
 CallResponse response = client.initiateCall(request);
 System.out.println(response);
