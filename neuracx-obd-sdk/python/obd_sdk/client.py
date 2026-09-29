@@ -49,7 +49,7 @@ class OBDClient:
         next_action_by_api=None,
         next_action_url=None,
         stream=None,
-        pingback_url=None,
+        call_events_webhook=None,
         call_events=None,
     ):
         """Initiate an outbound dial call.
@@ -63,7 +63,7 @@ class OBDClient:
             next_action_by_api: True if your server decides the next IVR step dynamically
             next_action_url: webhook the platform calls mid-call to ask what should happen next
             stream: dict describing live audio streaming/recording config — see build_stream_config()
-            pingback_url: webhook that receives call status callbacks
+            call_events_webhook: webhook that receives call status callbacks
             call_events: dict of event_name -> bool controlling which events trigger a callback —
                 see build_call_events()
 
@@ -87,7 +87,7 @@ class OBDClient:
             "next_action_by_api": next_action_by_api,
             "next_action_url": next_action_url,
             "stream": stream,
-            "pingback_url": pingback_url,
+            "call_events_webhook": call_events_webhook,
             "call_events": call_events,
         }
         for key, value in optional_fields.items():
@@ -158,7 +158,7 @@ def build_stream_config(
 
 def build_call_events(initiated=True, ringing=True, answered=True, completed=True, failed=True, expired=True):
     """Build the `call_events` payload for initiate_call() — controls which lifecycle events
-    trigger a callback to pingback_url."""
+    trigger a callback to call_events_webhook."""
     return {
         "initiated": initiated,
         "ringing": ringing,

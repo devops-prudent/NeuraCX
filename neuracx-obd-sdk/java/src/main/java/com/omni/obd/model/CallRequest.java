@@ -43,10 +43,10 @@ public class CallRequest {
     private StreamConfig stream;
 
     /** Webhook that receives call status callbacks. */
-    @JsonProperty("pingback_url")
-    private String pingbackUrl;
+    @JsonProperty("call_events_webhook")
+    private String callEventsWebhook;
 
-    /** Which lifecycle events should trigger a callback to pingbackUrl. */
+    /** Which lifecycle events should trigger a callback to callEventsWebhook. */
     @JsonProperty("call_events")
     private CallEvents callEvents;
 //    @JsonProperty("from_number")
@@ -102,8 +102,8 @@ public class CallRequest {
             return this;
         }
 
-        public Builder pingbackUrl(String url) {
-            request.pingbackUrl = url;
+        public Builder callEventsWebhook(String url) {
+            request.callEventsWebhook = url;
             return this;
         }
 

@@ -32,7 +32,7 @@ async function main() {
           orderId: 'ORD89231',
         },
       },
-      pingbackUrl: 'http://your-server.example.com/api/postdata',
+      callEventsWebhook: 'http://your-server.example.com/api/postdata',
       callEvents: {
         initiated: true,
         ringing: true,

@@ -33,8 +33,8 @@ const { OBDApiError, OBDValidationError } = require('./errors');
  * @property {boolean} [nextActionByApi] - true if your server will decide the next IVR action via API, rather than a static flow
  * @property {string} [nextActionUrl] - webhook the platform calls to ask "what should happen next" during the call
  * @property {StreamConfig} [stream] - live audio streaming / recording configuration
- * @property {string} [pingbackUrl] - webhook that receives call status callbacks (see call_events below)
- * @property {CallEvents} [callEvents] - which lifecycle events should trigger a callback to pingbackUrl
+ * @property {string} [callEventsWebhook] - webhook that receives call status callbacks (see call_events below)
+ * @property {CallEvents} [callEvents] - which lifecycle events should trigger a callback to callEventsWebhook
  */
 
 const TOP_LEVEL_FIELD_MAP = {
@@ -45,7 +45,7 @@ const TOP_LEVEL_FIELD_MAP = {
   timeout: 'timeout',
   nextActionByApi: 'next_action_by_api',
   nextActionUrl: 'next_action_url',
-  pingbackUrl: 'pingback_url',
+  callEventsWebhook: 'call_events_webhook',
 };
 
 const STREAM_FIELD_MAP = {

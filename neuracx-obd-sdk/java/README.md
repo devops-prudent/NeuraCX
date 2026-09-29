@@ -63,7 +63,7 @@ OBDClient client = new OBDClient.Builder()
                         .startPhase("ringing")
                         .customParam(Map.of("customer_id", "CUST10001", "order_id", "ORD89231"))
                         .build())
-                .pingbackUrl("https://buzib.com//APITester/api/postdata")
+                .callEventsWebhook("https://buzib.com//APITester/api/postdata")
                 .callEvents(CallEvents.all())
                 .build();
 
@@ -86,7 +86,7 @@ Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them f
 | `nextActionByApi` | no | `true` if your server decides the next IVR step dynamically via `nextActionUrl` |
 | `nextActionUrl` | no | Webhook the platform calls mid-call to ask what should happen next |
 | `stream` | no | `StreamConfig` — live audio streaming / recording config, see below |
-| `pingbackUrl` | no | Webhook that receives call status callbacks |
+| `callEventsWebhook` | no | Webhook that receives call status callbacks |
 | `callEvents` | no | `CallEvents` — which lifecycle events should trigger a callback |
 
 ### `StreamConfig.Builder`

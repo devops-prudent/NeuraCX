@@ -40,8 +40,8 @@ Both are issued by your Omni account team. **Treat the API key like a password**
 | `timeout` | Ordinary ring timeout, in seconds — how long the destination phone is allowed to ring before the platform gives up on that attempt. |
 | `next_action_by_api` | If `true`, the call doesn't follow a pre-built static IVR flow — instead, at each step, the platform asks `next_action_url` "what do I do now?" Use this when the IVR logic needs to be dynamic (e.g. driven by data in your own database). |
 | `next_action_url` | The webhook URL the platform calls to get that "what do I do now?" answer, when `next_action_by_api` is `true`. |
-| `pingback_url` | A webhook URL that receives a POST every time something notable happens on the call (see `call_events` below). This is how your system finds out a call was answered, failed, etc. |
-| `call_events` | A set of booleans (`initiated`, `ringing`, `answered`, `completed`, `failed`, `expired`) letting you choose exactly which of those moments trigger a POST to `pingback_url`. Turn off ones you don't care about to reduce webhook noise. |
+| `call_events_webhook` | A webhook URL that receives a POST every time something notable happens on the call (see `call_events` below). This is how your system finds out a call was answered, failed, etc. |
+| `call_events` | A set of booleans (`initiated`, `ringing`, `answered`, `completed`, `failed`, `expired`) letting you choose exactly which of those moments trigger a POST to `call_events_webhook`. Turn off ones you don't care about to reduce webhook noise. |
 | `stream` | Real-time audio streaming / recording settings, detailed below. Omit entirely if you don't need live audio. |
 
 ### `stream` object

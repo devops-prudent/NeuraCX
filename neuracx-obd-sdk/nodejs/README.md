@@ -127,8 +127,8 @@ Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them f
 | `nextActionByApi`   | boolean       | no       | `true` if your server decides the next IVR step dynamically via `nextActionUrl`, rather than a pre-built flow                            |
 | `nextActionUrl`     | string        | no       | Webhook the platform calls mid-call to ask what should happen next                                                                       |
 | `stream`            | object        | no       | Live audio streaming / recording config — see below                                                                                      |
-| `pingbackUrl`       | string        | no       | Webhook that receives call status callbacks                                                                                              |
-| `callEvents`        | object        | no       | Which lifecycle events (`initiated`, `ringing`, `answered`, `completed`, `failed`, `expired`) should trigger a callback to `pingbackUrl` |
+| `callEventsWebhook`       | string        | no       | Webhook that receives call status callbacks                                                                                              |
+| `callEvents`        | object        | no       | Which lifecycle events (`initiated`, `ringing`, `answered`, `completed`, `failed`, `expired`) should trigger a callback to `callEventsWebhook` |
 
 ### `stream` object
 

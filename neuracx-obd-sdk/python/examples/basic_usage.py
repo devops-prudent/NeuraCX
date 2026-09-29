@@ -26,7 +26,7 @@ try:
             chunk_size=1600,
             custom_param={"customer_id": "CUST10001", "order_id": "ORD89231"},
         ),
-        pingback_url="http://your-server.example.com/api/postdata",
+        call_events_webhook="http://your-server.example.com/api/postdata",
         call_events=build_call_events(),
     )
     print("Call initiated:", response)

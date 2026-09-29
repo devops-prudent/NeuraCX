@@ -73,7 +73,7 @@ Never hardcode `base_url`, `client_id`, or `api_key` in source code — load the
 | `next_action_by_api`  | bool    | no       | `True` if your server decides the next IVR step dynamically via `next_action_url`, rather than a pre-built flow |
 | `next_action_url`     | str     | no       | Webhook the platform calls mid-call to ask what should happen next                                              |
 | `stream`              | dict    | no       | Live audio streaming / recording config — build with `build_stream_config()`                                    |
-| `pingback_url`        | str     | no       | Webhook that receives call status callbacks                                                                     |
+| `call_events_webhook`        | str     | no       | Webhook that receives call status callbacks                                                                     |
 | `call_events`         | dict    | no       | Which lifecycle events should trigger a callback — build with `build_call_events()`                             |
 
 ### `build_stream_config()`

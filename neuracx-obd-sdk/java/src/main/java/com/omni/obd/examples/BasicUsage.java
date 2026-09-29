@@ -46,7 +46,7 @@ public class BasicUsage {
                         .startPhase("ringing")
                         .customParam(Map.of("customer_id", "CUST10001", "order_id", "ORD89231"))
                         .build())
-                .pingbackUrl("http://your-server.example.com/api/postdata")
+                .callEventsWebhook("http://your-server.example.com/api/postdata")
                 .callEvents(CallEvents.all())
                 .build();
 
