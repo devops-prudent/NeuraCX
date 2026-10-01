@@ -1,29 +1,35 @@
-# Omni OBD SDK — Node.js
+# NeuraCX OBD SDK — Node.js
 
-Official Node.js client for the Omni Outbound Dial (OBD) API. Lets your application place outbound calls, optionally stream/record the audio in real time, and receive status callbacks — without hand-rolling HTTP requests.
+Official Node.js client for the NeuraCX Outbound Dial (OBD) API. Lets your application place outbound calls, optionally stream/record the audio in real time, and receive status callbacks — without hand-rolling HTTP requests.
 
 Requires Node.js 18 or later (uses the built-in `fetch`).
 
 ## Install
 
-This SDK lives in a subfolder of the NeuraCX repo, at `neuracx-obd-sdk/nodejs`. There are three ways to pull it into a consuming project — pick based on what's reliable in your environment.
+This SDK lives in a subfolder of the NeuraCX repo, at `neuracx-obd-sdk/nodejs`. There are two ways to pull it into a consuming project — pick based on what's reliable in your environment.
 
 ### Option A — Clone + local `file:` dependency (most reliable, recommended)
 
 Some npm/Windows combinations choke on the git-subdirectory syntax in Option B, so this is the option to reach for if that gives you trouble.
 
+First, clone the NeuraCX repository to your local machine:
+
 ```bash
 git clone https://github.com/devops-prudent/NeuraCX.git C:\sdks\NeuraCX
 ```
 
-Then in your project's `package.json`:
+The SDK will then be available at:
+
+C:\sdks\NeuraCX\neuracx-obd-sdk\nodejs
+
+In the package.json of your consuming project, add the SDK as a local dependency:
 
 ```json
-{
+
   "dependencies": {
     "omni-obd-sdk": "file:C:\\sdks\\NeuraCX\\neuracx-obd-sdk\\nodejs"
   }
-}
+
 ```
 
 sample package.json:
