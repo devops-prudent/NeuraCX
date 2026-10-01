@@ -73,7 +73,7 @@ npm install git+ssh://git@github.com/devops-prudent/NeuraCX.git#main:neuracx-obd
 npm install git+https://<token>@github.com/devops-prudent/NeuraCX.git#main:neuracx-obd-sdk/nodejs
 ```
 
-If this fails with a corrupted-tarball or ENOENT error, run `npm cache clean --force` and retry, or fall back to Option A.
+If this fails with a corrupted-tarball or ENOENT error, retry after clearing the npm cache. If the issue persists, fall back to Option A.
 
 ## Quick start
 
@@ -93,7 +93,7 @@ try {
   const response = await client.initiateCall({
     fromNumber: "+91xxxxxxxxxx",
     toNumber: "+91xxxxxxxxxx",
-    refId: 6565,
+    refId: "6565",
     nextActionByApi: false,
     nextActionUrl: "",
     stream: {
