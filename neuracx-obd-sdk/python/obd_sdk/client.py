@@ -118,7 +118,7 @@ class OBDClient:
         
 
             raise OBDApiError(
-                body.get("message", f"OBD API request failed with status {response.status_code}"),
+                body.get("message", f"OBD API request failed with status : {response.status_code} error:{response.text}"),
                 status_code=response.status_code,
                 response_body=body,
             )
