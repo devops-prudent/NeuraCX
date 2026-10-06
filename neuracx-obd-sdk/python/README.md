@@ -33,29 +33,41 @@ client = OBDClient(
     client_id=os.getenv["OBD_CLIENT_ID"],       # provided by your account team
     api_key=os.getenv["OBD_API_KEY"],           # provided by your account team
 )
+try:
+    response = client.initiate_call(
+        from_number="+91xxxxxxxxxx",
+        to_number="+91yyyyyyyyyy",
+        ref_id=6565,
+        next_action_by_api=False,
+        next_action_url='',
+        stream={
+            "enabled": True,
+            "record": True,
+            "stream_url": 'wss://xxx/yy/ws',
+            "duration": 10,
+            "chunkSize": 1600,
+            "startPhase": 'ringing',
+            "customParam": {
+            "customerId": 'CUST10001',
+            "orderId": 'ORD89231',
+            },
+        }
+        call_events_webhook="http://your-server.example.com/api/postdata",
+        call_events= {
+            "initiated": True,
+            "ringing": True,
+            "answered": True,
+            "completed": True,
+            "failed": True,
+            "expired": True
+            }
 
-response = client.initiate_call(
-    from_number="+91xxxxxxxxxx",
-    to_number="+91yyyyyyyyyy",
-    ref_id=6565,
-    next_action_by_api=False,
-    next_action_url='',
-    stream={
-        "enabled": True,
-        "record": True,
-        "stream_url": 'wss://xxx/yy/ws',
-        "duration": 10,
-        "chunkSize": 1600,
-        "startPhase": 'ringing',
-        "customParam": {
-          "customerId": 'CUST10001',
-          "orderId": 'ORD89231',
-        },
-    }
+    )
+    print(response)
 
-)
-
-print(response)
+except OBDApiError as e:
+    print("Status:", e.status_code)
+    print("Error:", (e.response_body or {}).get("error"))
 # {'status': 'success', 'message': 'OBD initiation successful', 'request_id': 19419, 'timestamp': '...'}
 ```
 
