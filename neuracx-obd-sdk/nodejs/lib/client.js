@@ -25,7 +25,7 @@ const { OBDApiError, OBDValidationError } = require('./errors');
 
 /**
  * @typedef {Object} InitiateCallRequest
- * @property {string} fromNumber - caller id shown to the destination, E.164 format e.g. "+9104847189769"
+ * @property {string} fromNumber - caller id shown to the destination, E.164 format e.g. "+91XXXXXXXXXX
  * @property {string} toNumber - destination number to dial, E.164 format
  * @property {number} [dialRequestExpiry] - seconds after which the dial *request* itself is abandoned if not yet placed
  * @property {(number|string)} [refId] - your own reference id, echoed back in callbacks so you can correlate them to this call

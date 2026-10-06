@@ -47,8 +47,8 @@ OBDClient client = new OBDClient.Builder()
                 .build();
 
         CallRequest request = new CallRequest.Builder()
-                .fromNumber("+918044350235")
-                .toNumber("+919847472945")
+                .fromNumber("+91XXXXXXXXXX")
+                .toNumber("+91XXXXXXXXXX")
                 .dialRequestExpiry(10)
                 .refId(6565)
                 .timeout(30)

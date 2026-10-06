@@ -10,7 +10,7 @@ import com.omni.obd.OBDValidationException;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CallRequest {
 
-    /** Caller ID shown to the destination, E.164 format e.g. "+9104847189769". Required. */
+    /** Caller ID shown to the destination, E.164 format e.g. "+91XXXXXXXXXX". Required. */
     @JsonProperty("from_number")
     private String fromNumber;
 

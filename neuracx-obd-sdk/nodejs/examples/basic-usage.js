@@ -13,8 +13,8 @@ const client = new OBDClient({
 async function main() {
   try {
     const response = await client.initiateCall({
-      fromNumber: '+9104847189769',
-      toNumber: '+916238330634',
+      fromNumber: '+91XXXXXXXXXX',
+      toNumber: '+91XXXXXXXXXX',
       dialRequestExpiry: 10,
       refId: 6565,
       timeout: 30,

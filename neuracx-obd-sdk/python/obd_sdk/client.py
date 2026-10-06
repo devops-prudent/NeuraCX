@@ -55,7 +55,7 @@ class OBDClient:
         """Initiate an outbound dial call.
 
         Args:
-            from_number: caller id shown to the destination, E.164 format e.g. "+9104847189769"
+            from_number: caller id shown to the destination, E.164 format e.g. "+91XXXXXXXXXX"
             to_number: destination number to dial, E.164 format
             dial_request_expiry: seconds after which the request itself is abandoned if not yet placed
             ref_id: your own reference id, echoed back in callbacks so you can correlate them to this call

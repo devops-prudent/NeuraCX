@@ -30,8 +30,8 @@ public class BasicUsage {
                 .build();
 
         CallRequest request = new CallRequest.Builder()
-                .fromNumber("+9104847189769")
-                .toNumber("+916238330634")
+                .fromNumber("+91XXXXXXXXXX")
+                .toNumber("+91XXXXXXXXXX")
                 .dialRequestExpiry(10)
                 .refId(6565)
                 .timeout(30)

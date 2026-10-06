@@ -12,8 +12,8 @@ client = OBDClient(
 
 try:
     response = client.initiate_call(
-        from_number="+9104847189769",
-        to_number="+916238330634",
+        from_number="+91XXXXXXXXXX",
+        to_number="+91XXXXXXXXXX",
         dial_request_expiry=10,
         ref_id=6565,
         timeout=30,
