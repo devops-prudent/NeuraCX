@@ -70,7 +70,7 @@ Never hardcode `base_url`, `client_id`, or `api_key` in source code — load the
 | `dial_request_expiry` | int     | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                        |
 | `ref_id`              | int/str | no       | Your own reference id, echoed back in callbacks so you can match them to this call                              |
 | `timeout`             | int     | no       | How long to let the destination ring (seconds) before giving up                                                 |
-| `next_action_by_api`  | bool    | no       | `True` if your server decides the next IVR step dynamically via `next_action_url`, rather than a pre-built flow |
+| `next_action_by_api`  | bool    | yes       | `True` if your server decides the next IVR step dynamically via `next_action_url`, rather than a pre-built flow |
 | `next_action_url`     | str     | no       | Webhook the platform calls mid-call to ask what should happen next                                              |
 | `stream`              | dict    | no       | Live audio streaming / recording config — build with `build_stream_config()`                                    |
 | `call_events_webhook`        | str     | no       | Webhook that receives call status callbacks                                                                     |

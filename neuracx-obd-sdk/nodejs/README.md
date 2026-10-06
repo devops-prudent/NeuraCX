@@ -130,7 +130,7 @@ Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them f
 | `dialRequestExpiry` | number        | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                                                 |
 | `refId`             | number/string | no       | Your own reference id, echoed back in callbacks so you can match them to this call                                                       |
 | `timeout`           | number        | no       | How long to let the destination ring (seconds) before giving up                                                                          |
-| `nextActionByApi`   | boolean       | no       | `true` if your server decides the next IVR step dynamically via `nextActionUrl`, rather than a pre-built flow                            |
+| `nextActionByApi`   | boolean       | yes       | `true` if your server decides the next IVR step dynamically via `nextActionUrl`, rather than a pre-built flow                            |
 | `nextActionUrl`     | string        | no       | Webhook the platform calls mid-call to ask what should happen next                                                                       |
 | `stream`            | object        | no       | Live audio streaming / recording config — see below                                                                                      |
 | `callEventsWebhook`       | string        | no       | Webhook that receives call status callbacks                                                                                              |
