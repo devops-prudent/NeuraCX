@@ -80,7 +80,7 @@ Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them f
 | ------------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `fromNumber`        | string        | yes      | Caller ID shown to the destination, E.164 format (`+countrycode...`)                                                                     |
 | `toNumber`          | string        | yes      | Number to dial, E.164 format                                                                                                             |
-| `dialRequestExpiry` | number        | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                                                 |
+| `dialRequestExpiry` | integer        | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                                                 |
 | `refId`             | number/string | no       | Your own reference id, echoed back in callbacks so you can match them to this call                                                       |
 | `timeout`           | number        | no       | How long to let the destination ring (seconds) before giving up                                                                          |
 | `nextActionByApi`   | boolean       | yes       | `true` if your server decides the next IVR step dynamically via `nextActionUrl`, rather than a pre-built flow                            |
