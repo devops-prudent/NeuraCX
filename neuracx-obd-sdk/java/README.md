@@ -76,30 +76,33 @@ Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them f
 
 ## Field reference
 
-| `CallRequest.Builder` method | Required | Meaning |
-|---|---|---|
-| `fromNumber` | yes | Caller ID shown to the destination, E.164 format (`+countrycode...`) |
-| `toNumber` | yes | Number to dial, E.164 format |
-| `dialRequestExpiry` | no | Seconds after which the *request itself* is abandoned if the call hasn't been placed yet |
-| `refId` | no | Your own reference id, echoed back in callbacks so you can match them to this call |
-| `timeout` | no | How long to let the destination ring (seconds) before giving up |
-| `nextActionByApi` | yes | `true` if your server decides the next IVR step dynamically via `nextActionUrl` |
-| `nextActionUrl` | no | Webhook the platform calls mid-call to ask what should happen next |
-| `stream` | no | `StreamConfig` — live audio streaming / recording config, see below |
-| `callEventsWebhook` | no | Webhook that receives call status callbacks |
-| `callEvents` | no | `CallEvents` — which lifecycle events should trigger a callback |
+| Field               | Type          | Required | Meaning                                                                                                                                  |
+| ------------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `fromNumber`        | string        | yes      | Caller ID shown to the destination, E.164 format (`+countrycode...`)                                                                     |
+| `toNumber`          | string        | yes      | Number to dial, E.164 format                                                                                                             |
+| `dialRequestExpiry` | number        | no       | Seconds after which the _request itself_ is abandoned if the call hasn't been placed yet                                                 |
+| `refId`             | number/string | no       | Your own reference id, echoed back in callbacks so you can match them to this call                                                       |
+| `timeout`           | number        | no       | How long to let the destination ring (seconds) before giving up                                                                          |
+| `nextActionByApi`   | boolean       | yes       | `true` if your server decides the next IVR step dynamically via `nextActionUrl`, rather than a pre-built flow                            |
+| `nextActionUrl`     | string        | no       | Webhook the platform calls mid-call to ask what should happen next                                                                       |
+| `stream`            | object        | no       | Live audio streaming / recording config — see below                                                                                      |
+| `callEventsWebhook`       | string        | no       | Webhook that receives call status callbacks                                                                                              |
+| `callEvents`        | object        | no       | Which lifecycle events (`initiated`, `ringing`, `answered`, `completed`, `failed`, `expired`) should trigger a callback to `callEventsWebhook` |
+
 
 ### `StreamConfig.Builder`
 
-| Method | Meaning |
-|---|---|
-| `enabled` | Turn audio streaming on/off for this call |
-| `record` | Also persist the audio as a recording, not just stream it live |
-| `streamUrl` | Your WebSocket endpoint that receives the audio, e.g. `ws://media.example.com:3031` |
-| `duration` | Max streaming duration in seconds |
-| `chunkSize` | Size in bytes of each audio chunk sent over the WebSocket |
-| `startPhase` | `"ringing"` or `"answered"` — when streaming should begin |
-| `customParam` | Free-form `Map<String,String>` echoed back to your WebSocket server |
+
+
+| Field         | Type    | Meaning                                                                             |
+| ------------- | ------- | ----------------------------------------------------------------------------------- |
+| `enabled`     | boolean | Turn audio streaming on/off for this call                                           |
+| `record`      | boolean | Also persist the audio as a recording, not just stream it live                      |
+| `streamUrl`   | string  | Your WebSocket endpoint that receives the audio, e.g. `ws://media.example.com:3031` |
+| `duration`    | number  | Max streaming duration in seconds                                                   |
+| `chunkSize`   | number  | Size in bytes of each audio chunk sent over the WebSocket                           |
+| `startPhase`  | string  | `"ringing"` or `"answered"` — when streaming should begin                           |
+| `customParam` | object  | Free-form key/value metadata echoed back to your WebSocket server     
 
 ## Error handling
 

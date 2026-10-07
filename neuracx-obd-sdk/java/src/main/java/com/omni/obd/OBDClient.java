@@ -11,25 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-/**
- * Client for the Omni Outbound Dial (OBD) API.
- *
- * <pre>{@code
- * OBDClient client = new OBDClient.Builder()
- *     .baseUrl(System.getenv("OBD_API_BASE_URL"))
- *     .clientId(System.getenv("OBD_CLIENT_ID"))
- *     .apiKey(System.getenv("OBD_API_KEY"))
- *     .build();
- *
- * CallResponse response = client.initiateCall(
- *     new CallRequest.Builder()
- *         .fromNumber("+9104847189769")
- *         .toNumber("+916238330634")
- *         .refId(6565)
- *         .build()
- * );
- * }</pre>
- */
+
 public class OBDClient {
 
     private final String baseUrl;
