@@ -43,7 +43,7 @@ import com.omni.obd.model.StreamConfig;
 OBDClient client = new OBDClient.Builder()
                 .baseUrl("https://neuracx.io")   // e.g. "https://obd.yourdomain.com"
                 .clientId("7da9f0c7304b770915d8e30c4ce32d07")       // provided by your account team
-                .apiKey("VcnTsXGkHP47xpP3LIF2jKzssfmcdyPqqiJS2iC24fx")         // provided by your account team
+                .apiKey("VcnTsXGkHP47xpP3LIF2jKzssfmcdyPqqiJS2iC24fx")  // provided by your account team
                 .build();
 
         CallRequest request = new CallRequest.Builder()
@@ -66,10 +66,15 @@ OBDClient client = new OBDClient.Builder()
                 .callEventsWebhook("https://buzib.com//APITester/api/postdata")
                 .callEvents(CallEvents.all())
                 .build();
+        try{
+            CallResponse response = client.initiateCall(request);
+            System.out.println("Call initiated: " + response);
+        } catch (OBDApiException e) {
+            System.err.println("OBD API error (status " + e.getStatusCode() + "): " + e.getMessage());
+            System.err.println(e.getResponseBody());
+        }
 
-CallResponse response = client.initiateCall(request);
-System.out.println(response);
-// CallResponse{status='success', message='OBD initiation successful', requestId=19419, timestamp='...'}
+
 ```
 
 Never hardcode `baseUrl`, `clientId`, or `apiKey` in source code — load them from environment variables, a properties file outside version control, or a secrets manager. See `examples/BasicUsage.java` for the full field set, including live streaming and status callbacks.
