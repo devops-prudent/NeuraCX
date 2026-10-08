@@ -90,15 +90,16 @@ Never hardcode `base_url`, `client_id`, or `api_key` in source code — load the
 
 ### `build_stream_config()`
 
-| Argument       | Meaning                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
-| `stream_url`   | Your WebSocket endpoint that receives the audio, e.g. `ws://media.example.com:3031` |
-| `enabled`      | Turn audio streaming on/off for this call                                           |
-| `record`       | Also persist the audio as a recording, not just stream it live                      |
-| `duration`     | Max streaming duration in seconds                                                   |
-| `chunk_size`   | Size in bytes of each audio chunk sent over the WebSocket                           |
-| `start_phase`  | `"ringing"` or `"answered"` — when streaming should begin                           |
-| `custom_param` | Free-form dict of metadata echoed back to your WebSocket server                     |
+
+| Argument | Python Type | Meaning |
+| --- | --- | --- |
+| `stream_url` | `str` | Your WebSocket endpoint that receives the audio, e.g. `wss://media.example.com:3031` |
+| `enabled` | `bool` | Turn audio streaming on/off for this call |
+| `record` | `bool` | Also persist the audio as a recording, not just stream it live |
+| `duration` | `int` | Max streaming duration in seconds |
+| `chunk_size` | `int` | Size in bytes of each audio chunk sent over the WebSocket |
+| `start_phase` | `str` | `"ringing"` or `"answered"` — when streaming should begin |
+| `custom_param` | `dict` | Free-form key/value metadata echoed back to your WebSocket server |
 
 ## Error handling
 
