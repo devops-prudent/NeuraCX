@@ -24,7 +24,7 @@ public class CallRequest {
 
     /** Your own reference id, echoed back in callbacks so you can correlate them to this call. */
     @JsonProperty("ref_id")
-    private Long refId;
+    private String refId;
 
     /** How long to let the destination ring, in seconds, before giving up. */
     @JsonProperty("timeout")
@@ -77,7 +77,7 @@ public class CallRequest {
             return this;
         }
 
-        public Builder refId(long refId) {
+        public Builder refId(String refId) {
             request.refId = refId;
             return this;
         }

@@ -17,36 +17,33 @@ import java.util.Map;
 
 
 public class BasicUsage {
-    static Dotenv dotenv = Dotenv.configure()
-            .directory("./")
-            .load();
 
     public static void main(String[] args) {
 
         OBDClient client = new OBDClient.Builder()
-                .baseUrl(dotenv.get("OBD_API_BASE_URL"))
-                .clientId(dotenv.get("OBD_CLIENT_ID"))
-                .apiKey(dotenv.get("OBD_API_KEY"))
+                .baseUrl("BASE_URL")
+                .clientId("CLIENT_ID")
+                .apiKey("API_KEY")
                 .build();
 
         CallRequest request = new CallRequest.Builder()
                 .fromNumber("+91XXXXXXXXXX")
                 .toNumber("+91XXXXXXXXXX")
-                .dialRequestExpiry(10)
-                .refId(6565)
+                .dialRequestExpiry(30)
+                .refId("XXXXXX")
                 .timeout(30)
                 .nextActionByApi(false)
                 .nextActionUrl("http://your-ivr-server.example.com/ivr/webhook")
                 .stream(new StreamConfig.Builder()
                         .enabled(true)
                         .record(true)
-                        .streamUrl("ws://your-media-server.example.com:3031")
+                        .streamUrl("ws://192.X.X.X:3031")
                         .duration(10)
                         .chunkSize(1600)
-                        .startPhase("ringing")
+                        .startPhase("answered")
                         .customParam(Map.of("customer_id", "CUST10001", "order_id", "ORD89231"))
                         .build())
-                .callEventsWebhook("http://your-server.example.com/api/postdata")
+                .callEventsWebhook("http://X.Y.Z.70/ApiTester/api/postdata")
                 .callEvents(CallEvents.all())
                 .build();
 
