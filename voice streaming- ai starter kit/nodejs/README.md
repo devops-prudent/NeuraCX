@@ -28,7 +28,7 @@ This installs:
 ## 3. Set up your Gemini API key
 
 Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey),
-then open `main.py` and paste it into the `API_KEY` variable near the top of the file.
+then open `server.js` and paste it into the `API_KEY` variable near the top of the file.
 
 
 ## 4. Run the server
